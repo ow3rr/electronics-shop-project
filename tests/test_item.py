@@ -17,3 +17,13 @@ def test_quantity():
 def test_calculate_total_price():
     assert Item("Ноутбук", 20000, 5).calculate_total_price() > 0
 
+def test_class():
+    return Item('Ноутбук', 10, 5)
+
+def test_instantiate_from_csv():
+    items = Item.instantiate_from_csv('src/items.csv')
+    assert len(items) == 5
+def test_string_to_number():
+    number = Item.string_to_number('123')
+    assert number == 123
+
