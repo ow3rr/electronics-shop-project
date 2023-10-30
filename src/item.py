@@ -71,4 +71,4 @@ class Item:
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name

@@ -27,8 +27,10 @@ def test_string_to_number():
     assert number == 123
 
 
-def test_repr_and_str():
-    if __name__ == '__main__':
-        item1 = Item("Смартфон", 10000, 20)
-        assert repr(item1) == "Item('Смартфон', 10000, 20)"
-        assert str(item1) == 'Смартфон'
+def test_repr():
+    item1 = Item("Смартфон", 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+
+def test_str():
+    item1 = Item("Смартфон", 10000, 20)
+    assert str(item1) == 'Смартфон'
