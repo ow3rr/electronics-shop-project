@@ -2,6 +2,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+from src.keyboard import Keyboard
 
 
 @pytest.fixture
@@ -74,3 +75,20 @@ def test_number_of_sim():
     assert phone1.number_of_sim == 2
     with pytest.raises(ValueError):
         phone1.number_of_sim = 0
+
+
+@pytest.fixture
+def keyboard():
+    return Keyboard('Dark Project KD87A', 9600, 5)
+
+
+def test_keyboard_lang(keyboard):
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
+    assert str(kb) == "Dark Project KD87A"
+    assert str(kb.language) == "EN"
+    kb.change_lang()
+    assert str(kb.language) == "RU"
+    # Сделали EN -> RU -> EN
+    kb.change_lang()
+    assert str(kb.language) == "EN"
+    assert kb.language != 'CH'
