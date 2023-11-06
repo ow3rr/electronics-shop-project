@@ -1,9 +1,9 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
-from src.item import Item
+import csv
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 from src.keyboard import Keyboard
-
 
 @pytest.fixture
 def test_pay_rate():
@@ -92,3 +92,13 @@ def test_keyboard_lang(keyboard):
     kb.change_lang()
     assert str(kb.language) == "EN"
     assert kb.language != 'CH'
+
+
+def test_exception_instantiate_from_csv():
+    with pytest.raises(FileNotFoundError) as e:
+        Item.instantiate_from_csv('sssss')
+    assert str(e.value) == "Отсутствует файл item.csv"
+
+    with pytest.raises(InstantiateCSVError) as e:
+        Item.instantiate_from_csv('tests/test_items.csv')
+    assert str(e.value) == 'Файл item.csv поврежден'
